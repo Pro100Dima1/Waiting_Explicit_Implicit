@@ -25,9 +25,8 @@ public class MainPageTest {
         options.addArguments("--remote-allow-origins=*");
         driver = new ChromeDriver(options);
         driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        //driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(1));
         driver.get("https://www.jetbrains.com/");
-
     }
 
     @AfterEach
@@ -45,10 +44,8 @@ public class MainPageTest {
     public void visibleAfterSeconds() {
         driver.get("https://demoqa.com/dynamic-properties");
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(6));
-        WebElement but = driver.findElement(By.cssSelector("#visibleAfter"));
         wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("#visibleAfter")));
+        WebElement but = driver.findElement(By.cssSelector("#visibleAfter"));
         assertTrue(but.isEnabled(), "После 5-ти секунд неактивна");
-
-
     }
 }
